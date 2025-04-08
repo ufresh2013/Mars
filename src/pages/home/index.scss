@@ -1,0 +1,42 @@
+.home {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  header {
+    flex: 0 0 auto;
+    padding: 20px;
+  }
+  .content {
+    flex: 1 0 auto;
+    display: flex;
+    height: calc(100vh - 60px);
+    .editor {
+      flex: 0 0 500px;
+      padding: 0 20px;
+    }
+    .renderer {
+      flex: 1;
+      overflow: auto;
+      height: 100%;
+      padding: 20px 40px;
+      box-sizing: border-box;
+    }
+  }
+  .title {
+    margin-right: 20px;
+  }
+  .tag {
+    border: 1px solid #eee;
+    padding: 6px 13px;
+    border-radius: 20px;
+    margin-right: 12px;
+    cursor: pointer;
+    &:hover {
+      background: #eee;
+    }
+  }
+
+  .tag-active {
+    background: #eee;
+  }
+}
