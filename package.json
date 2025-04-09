@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "d": "vite build && gh-pages -d dist"
   },
   "dependencies": {
     "@bytemd/plugin-gfm": "^1.22.0",
