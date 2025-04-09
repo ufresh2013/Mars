@@ -10,7 +10,6 @@ import {
   useEdgesState,
   useReactFlow,
 } from '@xyflow/react';
-import '@xyflow/react/dist/style.css';
 
 const LayoutFlow = ({ value }) => {
   const { fitView } = useReactFlow();

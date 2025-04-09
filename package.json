@@ -6,10 +6,10 @@
   "homepage": "https://ufresh2013.github.io/Mars",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --base=/Mars/",
     "lint": "eslint .",
     "preview": "vite preview",
-    "d": "vite build && gh-pages -d dist"
+    "d": "yarn build && gh-pages -d dist"
   },
   "dependencies": {
     "@bytemd/plugin-gfm": "^1.22.0",

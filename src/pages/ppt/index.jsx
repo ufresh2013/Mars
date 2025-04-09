@@ -6,7 +6,6 @@ import {
   Background,
   BackgroundVariant,
 } from '@xyflow/react';
-import '@xyflow/react/dist/style.css';
 import './index.scss'
 import { mark2ppt, slidesToElements } from '@/utils/transform/ppt';
 import Slide from './slide';
