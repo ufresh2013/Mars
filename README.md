@@ -1,12 +1,14 @@
-# React + Vite
+# Mars
+Mars 是一款强大的工具，它能够从类 Markdown 文本生成 Word 文档、PPT、流程图和图表数据报告。
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 特性
+- **Markdown 支持**：使用熟悉的 Markdown 语法进行内容创作。
+- **多格式输出**：直接转化为 Word 文档、PPT、流程图和图表。
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 本地启动
+```bash
+# 安装命令示例
+node -v // v22.11.0
+yarn
+yarn dev
+```
