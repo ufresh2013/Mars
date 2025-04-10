@@ -36,8 +36,8 @@ export default function Home() {
       render: () => <Report value={value} />,
     },
     {
-      type: 'word',
-      name: 'Word',
+      type: 'HTML',
+      name: 'HTML',
       defaultValue: markdownDefaultValue,
       render: () => <Viewer value={value} />,
     },
