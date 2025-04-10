@@ -113,13 +113,14 @@ export function mark2flow(text, direction = 'TR') {
         })
       }
     } else if (curNode) {
-      curNode.data.desc += `${line}\n`
+      curNode.data.desc += line // tood: 支持换行 \n
       curNode.data = {
         ...curNode.data,
         ...getElementWidthHeight(curNode.data),
       }
     }
   }
+
   return getLayoutedElements(nodes, edges, direction)
 }
 
@@ -133,6 +134,7 @@ export function updateMarkByNode(newNode, text) {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i]
     if (line.includes('->') || !line) {
+      curNode = null
       res.push(line)
       continue
     } else if (/^\d+\./.test(line)) {
@@ -145,8 +147,10 @@ export function updateMarkByNode(newNode, text) {
         res.push(`${id}. ${newNode.title}`)
         continue
       }
-    } else if (curNode.id === newNode.id && !curNode.desc) {
-      res.push(newNode.desc)
+    } else if (curNode.id === newNode.id) {
+      if (!curNode.desc) {
+        res.push(newNode.desc)
+      }
       continue
     }
     res.push(line)
