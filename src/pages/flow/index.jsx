@@ -1,7 +1,5 @@
-
-
-import { mark2flow } from '@/utils/transform/flow';
-import React, { useEffect } from 'react';
+import { mark2flow } from '@/utils/transform/flow'
+import React, { useEffect, useState } from 'react'
 import {
   ReactFlow,
   ReactFlowProvider,
@@ -9,45 +7,70 @@ import {
   useNodesState,
   useEdgesState,
   useReactFlow,
-} from '@xyflow/react';
+} from '@xyflow/react'
+import ExportButton from '@/pages/Flow/Download/index.jsx'
+import EditableNode from '@/pages/Flow/EditableNode/index.jsx'
+import Editor from '@/components/Editor/index.jsx'
+import { updateMarkByNode } from '@/utils/transform/flow'
+import { flowDefaultValue } from '@/utils/defaultValue'
 
-const LayoutFlow = ({ value }) => {
-  const { fitView } = useReactFlow();
-  const { nodes: initialNodes, edges: initialEdges } = mark2flow(value);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+import './index.scss'
 
-  const updateFlow = (direction) => {
+const { nodes: initialNodes, edges: initialEdges } = mark2flow(
+  flowDefaultValue,
+  'TR'
+)
+const FlowPage = () => {
+  // 编辑器文本
+  const [value, setValue] = useState(flowDefaultValue)
+  const [direction, setDirection] = useState('TR')
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
+
+  useEffect(() => {
     const { nodes, edges } = mark2flow(value, direction)
     setNodes(nodes)
     setEdges(edges)
-    fitView()
+  }, [value, direction])
+
+  function changeNode(node) {
+    setValue(updateMarkByNode(node, value))
   }
 
-  useEffect(() => {
-    updateFlow()
-  }, [value])
-
   return (
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-      fitView
-    >
-      <Panel position="top-right">
-        <button onClick={() => updateFlow('TB')}>vertical layout</button>
-        <button onClick={() => updateFlow('LR')}>horizontal layout</button>
-      </Panel>
-    </ReactFlow>
-  );
-};
+    <div className="container">
+      <div className="container-editor">
+        <Editor value={value} setValue={setValue} />
+      </div>
+      <div className="container-renderer">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          nodeTypes={{
+            editableNode: (props) => (
+              <EditableNode {...props} changeNode={changeNode} />
+            ),
+          }}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          fitView
+          maxZoom={1.3}
+        >
+          <Panel position="top-right">
+            <button onClick={() => setDirection('TB')}>垂直布局</button>
+            <button onClick={() => setDirection('LR')}>水平布局</button>
+            <ExportButton />
+          </Panel>
+        </ReactFlow>
+      </div>
+    </div>
+  )
+}
 
-export default function ({ value }) {
+export default function () {
   return (
     <ReactFlowProvider>
-      <LayoutFlow value={value} />
+      <FlowPage />
     </ReactFlowProvider>
-  );
+  )
 }

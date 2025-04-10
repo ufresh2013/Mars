@@ -15,7 +15,8 @@
     "@bytemd/plugin-gfm": "^1.22.0",
     "@bytemd/react": "^1.22.0",
     "@dagrejs/dagre": "^1.1.4",
-    "@xyflow/react": "^12.5.5",
+    "@xyflow/react": "^12.5.4",
+    "html-to-image": "^1.11.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-remark": "^2.1.0"

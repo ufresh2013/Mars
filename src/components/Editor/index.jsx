@@ -1,7 +1,7 @@
 import 'bytemd/dist/index.css'
 import './index.scss'
 import gfm from '@bytemd/plugin-gfm'
-import { Editor, Viewer } from '@bytemd/react'
+import { Editor } from '@bytemd/react'
 
 const plugins = [
   gfm(),
@@ -12,12 +12,10 @@ export default function App({ value, setValue }) {
   return (
     <>
       <Editor
-        value={value || ''}
+        value={value}
         plugins={plugins}
         previewDebounce={300}
-        onChange={(v) => {
-          setValue(v)
-        }}
+        onChange={(v) => setValue(v)}
       />
     </>
   )

@@ -1,33 +1,35 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react'
 import {
   ReactFlow,
   useReactFlow,
   ReactFlowProvider,
   Background,
   BackgroundVariant,
-} from '@xyflow/react';
+} from '@xyflow/react'
 import './index.scss'
-import { mark2ppt, slidesToElements } from '@/utils/transform/ppt';
-import Slide from './slide';
-
+import { mark2ppt, slidesToElements } from '@/utils/transform/ppt'
+import Slide from './slide'
 
 function Flow({ value }) {
-  const { fitView } = useReactFlow();
-  const slides = mark2ppt(value);
-  const { start, nodes, edges } = useMemo(() => slidesToElements(slides), [slides]);
+  const { fitView } = useReactFlow()
+  const slides = mark2ppt(value)
+  const { start, nodes, edges } = useMemo(
+    () => slidesToElements(slides),
+    [slides]
+  )
 
   const handleNodeClick = useCallback(
     (_, node) => {
-      fitView({ nodes: [{ id: node.id }], duration: 150 });
+      fitView({ nodes: [{ id: node.id }], duration: 150 })
     },
-    [fitView],
-  );
+    [fitView]
+  )
 
   return (
     <ReactFlow
       nodes={nodes}
       nodeTypes={{
-        slide: Slide
+        slide: Slide,
       }}
       edges={edges}
       fitView
@@ -37,11 +39,11 @@ function Flow({ value }) {
     >
       <Background color="#f2f2f2" variant={BackgroundVariant.Lines} />
     </ReactFlow>
-  );
+  )
 }
- 
+
 export default ({ value }) => (
   <ReactFlowProvider>
     <Flow value={value} />
   </ReactFlowProvider>
-);
+)

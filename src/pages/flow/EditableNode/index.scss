@@ -1,0 +1,33 @@
+.editable-node {
+  min-width: 100px;
+  text-align: center;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: pre-line;
+
+  input {
+    width: 100%;
+    border: none;
+    outline: none;
+  }
+  .node-label {
+    padding: 8px;
+  }
+  .node-desc {
+    border-top: 1px solid #ccc;
+    padding: 8px;
+  }
+  .node-text {
+    min-height: 18px;
+  }
+  .node-textarea {
+    width: 100%;
+    font-size: 12px;
+    height: auto;
+    border: none;
+    outline: none;
+  }
+}
