@@ -1,7 +1,30 @@
+/* bytemd */
 .bytemd {
-  height: calc(100vh - 200px);
+  height: calc(100vh - 156px);
+  border: 14px solid var(--fill-gray);
+  border-top: none;
+  border-bottom-left-radius: 20px;
 }
 .bytemd-toolbar,
 .bytemd-status {
   display: none;
+}
+.bytemd-body {
+  height: 100%;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  padding: 10px 20px;
+  background: var(--fill-gray);
+  border-top-left-radius: 20px;
+  font-weight: bold;
+}
+.markdown-body {
+  ul ul {
+    margin-top: 10px !important;
+  }
 }

@@ -1,0 +1,19 @@
+:root {
+  /* --primary: #145943;
+  --bg: #fff; */
+  --white: 255, 255, 255;
+  --black: 18, 18, 18;
+  --primary: rgba(49, 175, 42, 1);
+  --primary-secondary: rgba(49, 175, 42, 0.3);
+  --bg: rgba(var(--black), 0.95);
+  --black-text-primary: rgba(var(--black), 0.9);
+  --black-text-secondary: rgba(var(--black), 0.66);
+  --black-text-tertiary: rgba(var(--black), 0.46);
+  --white-text-primary: rgba(var(--white), 0.9);
+  --white-text-secondary: rgba(var(--white), 0.66);
+  --white-text-tertiary: rgba(var(--white), 0.46);
+  --fill-black: rgba(var(--black), 0.95);
+  --fill-white: rgba(var(--white), 1);
+  --fill-gray: #f0f1f5;
+  --fill-button: #f9f9f9;
+}

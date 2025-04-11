@@ -2,17 +2,26 @@ import React, { useState } from 'react'
 import { markdownDefaultValue } from '@/utils/defaultValue'
 import { Viewer } from '@bytemd/react'
 import Editor from '@/components/Editor/index.jsx'
+import gfm from '@bytemd/plugin-gfm'
+import './index.scss'
+import 'github-markdown-css'
 
+const plugins = [
+  gfm(),
+  // Add more plugins here
+]
 export default function View() {
   const [value, setValue] = useState(markdownDefaultValue)
 
   return (
     <div className="container">
       <div className="container-editor">
-        <Editor value={value} setValue={setValue} />
+        <Editor value={value} plugins={plugins} setValue={setValue} />
       </div>
       <div className="container-renderer">
-        <Viewer value={value} />
+        <div className="html">
+          <Viewer value={value} plugins={plugins} />
+        </div>
       </div>
     </div>
   )

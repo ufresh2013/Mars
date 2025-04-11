@@ -11,6 +11,14 @@ const plugins = [
 export default function App({ value, setValue }) {
   return (
     <>
+      <div className="editor-header">
+        <span class="panel">
+          💻
+          {/* <SvgIcon name="code" size="20" /> */}
+          &nbsp;&nbsp;Code
+        </span>
+        <span>📚 Docs</span>
+      </div>
       <Editor
         value={value}
         plugins={plugins}

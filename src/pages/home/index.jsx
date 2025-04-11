@@ -4,7 +4,7 @@ import './index.scss'
 // import Editor from '@/pages/Editor/index.jsx'
 import Flow from '@/pages/Flow/index.jsx'
 import PPT from '@/pages/Ppt/index.jsx'
-import Viewer from '@/pages/Viewer/index.jsx'
+import Html from '@/pages/Html/index.jsx'
 import Report from '@/pages/Report/index.jsx'
 import {
   markdownDefaultValue,
@@ -12,6 +12,7 @@ import {
   flowDefaultValue,
   reportDefaultValue,
 } from '@/utils/defaultValue'
+import SvgIcon from '@/components/SvgIcon'
 
 export default function Home() {
   const [value, setValue] = useState(flowDefaultValue)
@@ -19,7 +20,7 @@ export default function Home() {
   const renderTypes = [
     {
       type: 'flow',
-      name: '流程图',
+      name: 'FLOW',
       defaultValue: flowDefaultValue,
       render: () => <Flow value={value} />,
     },
@@ -31,7 +32,7 @@ export default function Home() {
     },
     {
       type: 'report',
-      name: '数据报告',
+      name: 'REPORT',
       defaultValue: reportDefaultValue,
       render: () => <Report value={value} />,
     },
@@ -39,7 +40,7 @@ export default function Home() {
       type: 'HTML',
       name: 'HTML',
       defaultValue: markdownDefaultValue,
-      render: () => <Viewer value={value} />,
+      render: () => <Html value={value} />,
     },
   ]
   const curRenderer = renderTypes.find((item) => item.type === active).render
@@ -47,7 +48,7 @@ export default function Home() {
   return (
     <div className="home">
       <header>
-        <span className="title">Markdown在线转</span>
+        <span className="title">Markdown&nbsp;&nbsp;-&gt;</span>
         {renderTypes.map((item) => {
           return (
             <span
@@ -62,13 +63,11 @@ export default function Home() {
             </span>
           )
         })}
+        <a>
+          <SvgIcon name="github" size="20" />
+        </a>
       </header>
-      <div className="content">
-        <div className="editor">
-          {/* <Editor value={value} setValue={setValue} /> */}
-        </div>
-        <div className="renderer">{curRenderer()}</div>
-      </div>
+      <div className="content">{curRenderer()}</div>
     </div>
   )
 }

@@ -8,12 +8,11 @@ import {
   useEdgesState,
 } from '@xyflow/react'
 import { ChangeNodeProvider } from '@/pages/Flow/context.js'
-import ExportButton from '@/pages/Flow/Download/index.jsx'
+import Download from '@/pages/Flow/Download/index.jsx'
 import EditableNode from '@/pages/Flow/Node/index.jsx'
 import Editor from '@/components/Editor/index.jsx'
 import { updateMarkByNode } from '@/utils/transform/flow'
 import { flowDefaultValue } from '@/utils/defaultValue'
-
 import './index.scss'
 
 const { nodes: initialNodes, edges: initialEdges } = mark2flow(
@@ -56,11 +55,16 @@ const FlowPage = () => {
             onEdgesChange={onEdgesChange}
             fitView
             maxZoom={1.3}
+            minZoom={0.5}
           >
             <Panel position="top-right">
-              <button onClick={() => setDirection('TB')}>垂直布局</button>
-              <button onClick={() => setDirection('LR')}>水平布局</button>
-              <ExportButton />
+              <button onClick={() => setDirection('TB')} title="垂直布局">
+                ⬇️
+              </button>
+              <button onClick={() => setDirection('LR')} title="水平布局">
+                ➡️
+              </button>
+              <Download>PNG</Download>
             </Panel>
           </ReactFlow>
         </ChangeNodeProvider>

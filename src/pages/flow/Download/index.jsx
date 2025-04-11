@@ -16,7 +16,7 @@ function downloadImage(dataUrl) {
 const imageWidth = 1024
 const imageHeight = 768
 
-function DownloadButton() {
+function DownloadButton({ children }) {
   const { getNodes } = useReactFlow()
 
   const onClick = () => {
@@ -45,7 +45,7 @@ function DownloadButton() {
 
   return (
     <button className="download-btn" onClick={onClick}>
-      导出为图片
+      {children}
     </button>
   )
 }

@@ -17,9 +17,9 @@ const getElementWidthHeight = (node) => {
   // 将 div 添加到文档中以获取计算后的宽高
   document.body.appendChild(div)
   const width = Math.max(div.offsetWidth, 100)
-  const height = div.offsetHeight
+  const height = Math.max(div.offsetHeight, 40)
   document.body.removeChild(div)
-  return { width, height: height + 30 }
+  return { width, height }
 }
 
 // 根据dagre计算元素坐标

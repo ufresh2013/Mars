@@ -1,24 +1,20 @@
 .editable-node {
   min-width: 100px;
   text-align: center;
-  border: 1px solid #ccc;
-  background-color: #fff;
+  border: 1px solid #9370db;
+  background-color: #ececff;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 13px;
   white-space: pre-line;
 
-  input {
-    width: 100%;
-    border: none;
-    outline: none;
-  }
   .node-label {
     padding: 8px;
   }
   .node-desc {
     border-top: 1px solid #ccc;
     padding: 8px;
+    font-size: 11px;
   }
   .node-text {
     min-height: 18px;

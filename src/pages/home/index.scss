@@ -1,42 +1,50 @@
 .home {
   display: flex;
-  height: 100%;
+  height: 100vh;
   flex-direction: column;
   header {
     flex: 0 0 auto;
-    padding: 20px;
+    padding: 10px 30px;
+    font-family: 'chill_pixels';
+    font-size: 36px;
+    line-height: 2;
+    color: var(--primary);
+  }
+  .content {
+    flex: 1;
+    padding: 0 30px 20px;
   }
   .title {
-    margin-right: 20px;
+    margin-right: 10px;
   }
   .tag {
-    border: 1px solid #eee;
-    padding: 6px 13px;
-    border-radius: 20px;
+    color: var(--white-text-primary);
+    padding: 6px 13px 9px;
     margin-right: 12px;
     cursor: pointer;
-    &:hover {
-      background: #eee;
+    border-radius: 2px;
+    &:hover,
+    &.tag-active {
+      background: var(--primary-secondary);
+      color: var(--primary);
     }
-  }
-  .tag-active {
-    background: #eee;
   }
 }
 
 .container {
+  height: 100%;
   flex: 1 0 auto;
   display: flex;
-  height: calc(100vh - 60px);
+  background: var(--fill-white);
+  border-radius: 10px;
   .container-editor {
-    flex: 0 0 500px;
-    padding: 0 20px;
+    flex: 0 0 420px;
   }
   .container-renderer {
     flex: 1;
     overflow: auto;
     height: 100%;
     box-sizing: border-box;
-    padding: 0 20px 60px 20px;
+    height: calc(100vh - 120px);
   }
 }
