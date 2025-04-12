@@ -1,14 +1,10 @@
-<div align="center">
+## 🔥 Mars
 
-<h1>🔥 Mars</h1>
-
-Mardown 转 HTML, PPT, 流程图, 数据报告
+Mardown 在线转 HTML, PPT, 流程图, 数据报告
 
 🔨 在线地址: https://ufresh2013.github.io/Mars/
 
 [English](./README.md) · 中文
-
-</div>
 
 ## ✨ 特性
 

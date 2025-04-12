@@ -90,8 +90,8 @@ export const reportDefaultValue = `{card}
 100 200 300 400
 
 
-{line}
-# 柱状图标题
+{rowBar}
+# 条形图标题
 - 月份[x]
 1月 2月 3月 4月
 - 成本[y]
@@ -101,12 +101,11 @@ export const reportDefaultValue = `{card}
 
 
 {line}
-# 柱状图标题
+# 折线图标题
 - 月份[x]
 1月 2月 3月 4月
 - 成本[y]
 50 100 150 200
 - 销售额[y]
 100 200 300 400
-
 `

@@ -1,15 +1,10 @@
-<div align="center">
+## 🔥 Mars
 
-<h1>🔥 Mars</h1>
-
-Mars generate word, ppt, flow, chart from markdown-like text
-Mars
+Mars generate word, ppt, flow, chart from markdown-like text.
 
 🔨 Playground: https://ufresh2013.github.io/Mars/
 
 English · [中文](./README-zh_CN.md)
-
-</div>
 
 ## ✨ Features
 
