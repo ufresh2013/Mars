@@ -19,6 +19,8 @@ export default function Slide({ data }) {
     [fitView]
   )
 
+  console.log(source)
+
   return (
     <article className="slide" style={style}>
       <Remark>{source}</Remark>

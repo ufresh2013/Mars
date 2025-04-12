@@ -11,6 +11,7 @@ import { ChangeNodeProvider } from '@/pages/Flow/context.js'
 import Download from '@/pages/Flow/Download/index.jsx'
 import EditableNode from '@/pages/Flow/Node/index.jsx'
 import Editor from '@/components/Editor/index.jsx'
+import SvgIcon from '@/components/SvgIcon'
 import { updateMarkByNode } from '@/utils/transform/flow'
 import { flowDefaultValue } from '@/utils/defaultValue'
 import './index.scss'
@@ -59,12 +60,18 @@ const FlowPage = () => {
           >
             <Panel position="top-right">
               <button onClick={() => setDirection('TB')} title="垂直布局">
-                ⬇️
+                <SvgIcon
+                  name="vertical"
+                  size="20"
+                  style={{ transform: 'rotate(90deg)' }}
+                />
               </button>
               <button onClick={() => setDirection('LR')} title="水平布局">
-                ➡️
+                <SvgIcon name="vertical" size="20" />
               </button>
-              <Download>PNG</Download>
+              <Download>
+                <SvgIcon name="download" size="20" />
+              </Download>
             </Panel>
           </ReactFlow>
         </ChangeNodeProvider>

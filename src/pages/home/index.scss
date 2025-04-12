@@ -2,11 +2,11 @@
   display: flex;
   height: 100vh;
   flex-direction: column;
-  header {
+  .header {
     flex: 0 0 auto;
     padding: 10px 30px;
     font-family: 'chill_pixels';
-    font-size: 36px;
+    font-size: 30px;
     line-height: 2;
     color: var(--primary);
   }
@@ -28,6 +28,11 @@
       background: var(--primary-secondary);
       color: var(--primary);
     }
+  }
+  .home-link a {
+    float: right;
+    color: var(--white-text-primary);
+    margin-right: 10px;
   }
 }
 

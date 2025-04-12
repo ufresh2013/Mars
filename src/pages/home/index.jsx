@@ -5,7 +5,7 @@ import './index.scss'
 import Flow from '@/pages/Flow/index.jsx'
 import PPT from '@/pages/Ppt/index.jsx'
 import Html from '@/pages/Html/index.jsx'
-import Report from '@/pages/Report/index.jsx'
+import Dashboard from '@/pages/Dashboard/index.jsx'
 import {
   markdownDefaultValue,
   pptDefaultValue,
@@ -31,10 +31,10 @@ export default function Home() {
       render: () => <PPT value={value} />,
     },
     {
-      type: 'report',
-      name: 'REPORT',
+      type: 'dashboard',
+      name: 'Dashboard',
       defaultValue: reportDefaultValue,
-      render: () => <Report value={value} />,
+      render: () => <Dashboard value={value} />,
     },
     {
       type: 'HTML',
@@ -47,7 +47,7 @@ export default function Home() {
 
   return (
     <div className="home">
-      <header>
+      <header className="header">
         <span className="title">Markdown&nbsp;&nbsp;-&gt;</span>
         {renderTypes.map((item) => {
           return (
@@ -63,9 +63,11 @@ export default function Home() {
             </span>
           )
         })}
-        <a>
-          <SvgIcon name="github" size="20" />
-        </a>
+        <span className="home-link">
+          <a href="https://github.com/ufresh2013/Mars" target="_blank">
+            <SvgIcon name="github" size="26" />
+          </a>
+        </span>
       </header>
       <div className="content">{curRenderer()}</div>
     </div>

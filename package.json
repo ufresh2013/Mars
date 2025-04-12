@@ -12,6 +12,7 @@
     "d": "yarn build && gh-pages -d dist"
   },
   "dependencies": {
+    "@antv/g2plot": "^2.4.33",
     "@bytemd/plugin-gfm": "^1.22.0",
     "@bytemd/react": "^1.22.0",
     "@dagrejs/dagre": "^1.1.4",

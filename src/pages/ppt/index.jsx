@@ -12,6 +12,10 @@ import Editor from '@/components/Editor/index.jsx'
 import Slide from './slide'
 import { pptDefaultValue } from '@/utils/defaultValue'
 
+const nodeTypes = {
+  slide: Slide,
+}
+
 function Flow() {
   const [value, setValue] = useState(pptDefaultValue)
   const { fitView } = useReactFlow()
@@ -36,9 +40,7 @@ function Flow() {
       <div className="container-renderer">
         <ReactFlow
           nodes={nodes}
-          nodeTypes={{
-            slide: Slide,
-          }}
+          nodeTypes={nodeTypes}
           edges={edges}
           fitView
           fitViewOptions={{ nodes: [{ id: start }] }}
