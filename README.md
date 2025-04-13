@@ -10,6 +10,10 @@
 
 ## ✨ 支持
 
+🤔 这是一个Markdown making machine。你可以用markdown，生成所有你想要展示的东西。
+
+与办公软件不同，Mars 只提供一个输入框，如果你想改变展示的数据，你只需要改变输入框的文本。它完全遵循 MVC（Model-View-Controller）架构。MVC是一个很棒的软件架构模式，它不应仅用于编程，每个人都可以拥有自己的 MVC 工作流。
+
 - ➡️ markdown 转 流程图
 - 👀 markdown 转 PPT
 - 💯 markdown 转 仪表盘

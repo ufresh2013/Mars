@@ -12,7 +12,7 @@ English · [中文](./README.md)
 
 Mars is a markdown making machine. You can call it mmm🍫. It turns markdown to anything you want to display.
 
-Different from interaction in office software, it only provide one input. It totally follow the MVC architecture. If you want to change the view, what you need to do is changing data, and that's all.
+Different from traditional office software, it only provide one input. If you want to change the thing you display, the only way to do is changing input text. It totally follow the MVC(Model-View-Controller) architecture. MVC is a great software architecture pattern. It shouldn't be used only for programming. Wish everyone can have their own MVC workflow to help their job.
 
 - ➡️ Markdown to Flow Chart
 - 👀 Markdown to PPT
@@ -46,7 +46,7 @@ yarn d
 
 <br/>
 
-## 📝 Base on
+## 📝 Base
 
 Mars built on the following package:
 
