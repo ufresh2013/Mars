@@ -10,10 +10,10 @@
 
 ## ✨ 支持
 
-➡️ markdown 转 流程图
-👀 markdown 转 PPT
-💯 markdown 转 仪表盘
-📝 markdown 转 HTML
+- ➡️ markdown 转 流程图
+- 👀 markdown 转 PPT
+- 💯 markdown 转 仪表盘
+- 📝 markdown 转 HTML
 
 <br/>
 

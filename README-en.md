@@ -6,6 +6,8 @@ Mars generate word, ppt, flow, chart from markdown-like text.
 
 English · [中文](./README.md)
 
+<br/>
+
 ## ✨ Features
 
 - ➡️ Markdown to Flow Chart
