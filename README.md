@@ -1,30 +1,41 @@
 ## 🔥 Mars
 
-Mars generate word, ppt, flow, chart from markdown-like text.
+实现 Mardown 转PPT, 流程图, 仪表盘、HTML
 
-🔨 Playground: https://ufresh2013.github.io/Mars/
+🔨 在线地址: https://ufresh2013.github.io/Mars/
 
-English · [中文](./README-zh_CN.md)
+[English](./README-en.md) · 中文
 
-## ✨ Features
+<br/>
 
-- ➡️ Markdown to Flow Chart
-- 👀 Markdown to PPT
-- 💯 Markdown to Dashboard
-- 📝 Markdown to HTML
+## ✨ 支持
 
-## 🖼 Examples
+➡️ markdown 转 流程图
+👀 markdown 转 PPT
+💯 markdown 转 仪表盘
+📝 markdown 转 HTML
 
-## 📦 Install
+<br/>
+
+## 🖼 示例
+
+<img src="https://ufresh2013.github.io/2025/04/01/Mars/5.png">
+<img src="https://ufresh2013.github.io/2025/04/01/Mars/2.jpg">
+<img src="https://ufresh2013.github.io/2025/04/01/Mars/3.png">
+<img src="https://ufresh2013.github.io/2025/04/01/Mars/4.png">
+
+<br/>
+
+## 📦 安装
 
 ```bash
 # node版本 v22.11.0
-# install
+# 安装依赖
 yarn
 
-# local start
+# 本地启动
 yarn dev
 
-# build and publish to github page
+# 打包并发布到github page
 yarn d
 ```
