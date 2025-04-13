@@ -1,27 +1,23 @@
 ## 🔥 Mars
 
-Mars generate flow, ppt, dashboard, html from markdown-like text.
+实现 Mardown 转PPT, 流程图, 仪表盘、HTML
 
-English · [中文](./README-zh.md)
+[English](./README-en.md) · 中文
 
-🔨 Playground: https://ufresh2013.github.io/Mars/
-
-<br/>
-
-## ✨ Features
-
-- ➡️ Markdown to Flow Chart
-- 👀 Markdown to PPT
-- 💯 Markdown to Dashboard
-- 📝 Markdown to HTML
-
-Mars is a markdown making machine. You can call it mmm🍫. It turns markdown to anything you want to display.
-
-Different from interaction in office software, it only provide one input. It totally follow the MVC architecture. If you want to change the view, what you need to do is changing data, and that's all.
+🔨 在线地址: https://ufresh2013.github.io/Mars/
 
 <br/>
 
-## 🖼 Examples
+## ✨ 支持
+
+- ➡️ markdown 转 流程图
+- 👀 markdown 转 PPT
+- 💯 markdown 转 仪表盘
+- 📝 markdown 转 HTML
+
+<br/>
+
+## 🖼 示例
 
 <img src="https://ufresh2013.github.io/2025/04/01/Mars/5.png">
 <img src="https://ufresh2013.github.io/2025/04/01/Mars/2.jpg">
@@ -30,23 +26,25 @@ Different from interaction in office software, it only provide one input. It tot
 
 <br/>
 
-## 📦 Install
+## 📦 安装
 
 ```bash
 # node版本 v22.11.0
-# install
+# 安装依赖
 yarn
 
-# local start
+# 本地启动
 yarn dev
 
-# build and publish to github page
+# 打包并发布到github page
 yarn d
 ```
 
-## 📝 Base on
+<br/>
 
-Mars built on the following package:
+## 📝 选型
+
+Mars基于以下包进行构建：
 
 - Vite
 - React
