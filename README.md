@@ -1,23 +1,27 @@
 ## 🔥 Mars
 
-实现 Mardown 转PPT, 流程图, 仪表盘、HTML
+Mars generate flow, ppt, dashboard, html from markdown-like text.
 
-🔨 在线地址: https://ufresh2013.github.io/Mars/
+English · [中文](./README-zh.md)
 
-[English](./README-en.md) · 中文
-
-<br/>
-
-## ✨ 支持
-
-- ➡️ markdown 转 流程图
-- 👀 markdown 转 PPT
-- 💯 markdown 转 仪表盘
-- 📝 markdown 转 HTML
+🔨 Playground: https://ufresh2013.github.io/Mars/
 
 <br/>
 
-## 🖼 示例
+## ✨ Features
+
+- ➡️ Markdown to Flow Chart
+- 👀 Markdown to PPT
+- 💯 Markdown to Dashboard
+- 📝 Markdown to HTML
+
+Mars is a markdown making machine. You can call it mmm🍫. It turns markdown to anything you want to display.
+
+Different from interaction in office software, it only provide one input. It totally follow the MVC architecture. If you want to change the view, what you need to do is changing data, and that's all.
+
+<br/>
+
+## 🖼 Examples
 
 <img src="https://ufresh2013.github.io/2025/04/01/Mars/5.png">
 <img src="https://ufresh2013.github.io/2025/04/01/Mars/2.jpg">
@@ -26,16 +30,27 @@
 
 <br/>
 
-## 📦 安装
+## 📦 Install
 
 ```bash
 # node版本 v22.11.0
-# 安装依赖
+# install
 yarn
 
-# 本地启动
+# local start
 yarn dev
 
-# 打包并发布到github page
+# build and publish to github page
 yarn d
 ```
+
+## 📝 Base on
+
+Mars built on the following package:
+
+- Vite
+- React
+- ReactFlow
+- React Remark
+- bytemd
+- Antv G2plot
