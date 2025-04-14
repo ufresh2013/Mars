@@ -7,6 +7,7 @@ import './index.scss'
 
 export default function Ppt({ value, setValue }) {
   const slides = mark2ppt(value)
+  // console.log('slides', slides)
 
   return (
     <>

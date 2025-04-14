@@ -5,20 +5,18 @@
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  padding: 30px 10px;
+  padding: 20px;
+  align-items: flex-start;
+  flex-direction: row;
   justify-content: center;
-  &::after {
-    content: '';
-    flex: 1 0 40%;
-    margin: 10px;
-  }
+  row-gap: 20px;
+  column-gap: 20px;
 }
 
 .slide {
-  flex: 1 0 40%;
+  flex: 1 0 44%;
   min-width: 400px;
   max-width: 600px;
-  margin: 10px;
   height: 320px;
   border-radius: 10px;
   box-sizing: border-box;
@@ -32,6 +30,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  &:last-child:nth-child(2n - 1) {
+    margin-right: calc(50% + 10px);
+  }
 
   h1,
   h2,
@@ -45,7 +46,7 @@
     font-size: 40px;
   }
   h2 {
-    font-size: 30px;
+    font-size: 26px;
   }
   h3 {
     font-size: 20px;
@@ -53,12 +54,14 @@
   h4 {
     font-size: 18px;
   }
-  h5,
-  h6 {
+  h5 {
     font-size: 16px;
   }
+  h6 {
+    font-size: 12px;
+  }
   p {
-    margin: 0 0 10px;
+    margin: 0;
   }
   ul,
   ol {
@@ -68,6 +71,12 @@
   li {
     margin: 0;
     line-height: 2;
+  }
+  pre {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0 10px 0 10px;
+    border-radius: 6px;
+    font-size: 12px;
   }
   .column-container {
     display: flex;

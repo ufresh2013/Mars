@@ -3,79 +3,133 @@ export const SLIDE_WIDTH = 1280
 export const SLIDE_HEIGHT = 800
 export const SLIDE_PADDING = 20
 
+const PageSeperator = '----'
+const layoutSeparator = '---'
+const columnSeparator = '--'
+
 export function mark2ppt(text) {
   if (!text) return []
-  return text
-    .split('----')
-    .filter((v) => v.trim() !== '')
-    .map((slide) => {
-      slide = slide.trim()
-      return slide2html(slide)
-    })
-}
+  const lines = text.split('\n')
+  const slides = []
+  let curSlide = ''
 
-export function slide2html(slide) {
-  if (!slide) return []
-  return splitTextByLayout(slide)
-}
-
-function splitTextByLayout(text) {
-  const blocks = []
-  const layoutRegex = /{layout:column}/g
-  let match
-  let lastIndex = 0
-
-  while ((match = layoutRegex.exec(text)) !== null) {
-    // 处理 {layout:column} 之前的内容
-    if (match.index > lastIndex) {
-      const preLayoutText = text.slice(lastIndex, match.index).trim()
-      if (preLayoutText) {
-        blocks.push(preLayoutText)
-      }
-    }
-
-    // 查找下一个 {layout:column}
-    const nextMatch = layoutRegex.exec(text)
-    if (nextMatch) {
-      const layoutBlock = text.slice(
-        match.index,
-        nextMatch.index + '{layout:column}'.length
-      )
-      blocks.push(layoutBlock)
-      lastIndex = nextMatch.index + '{layout:column}'.length
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    if (line === PageSeperator) {
+      slides.push(curSlide)
+      curSlide = ''
     } else {
-      // 如果没有下一个 {layout:column}，将当前到末尾的内容加入
-      const layoutBlock = text.slice(match.index)
-      blocks.push(layoutBlock)
-      break
+      curSlide += `${line}\n`
+    }
+    if (i === lines.length - 1) {
+      slides.push(curSlide)
     }
   }
 
-  // 处理最后一个 {layout:column} 之后的内容
-  if (lastIndex < text.length) {
-    const remainingText = text.slice(lastIndex).trim()
-    if (remainingText) {
-      blocks.push(remainingText)
+  return slides.map((v) => slide2html(v))
+}
+
+function countTripleBackticks(str) {
+  const matches = str.match(/```|\\`\\`\\`/g)
+  return matches ? matches.length : 0
+}
+
+function inCode(beforeText) {
+  return countTripleBackticks(beforeText) % 2 === 1
+}
+
+// 状态机
+function slide2html(text) {
+  const lines = text.split('\n').map((v) => (v || '').trim())
+
+  let html = ''
+  let curColumnHtml = ''
+  let curLayout = 'normal' // normal, column
+  let curText = ''
+  let curColumnText = ''
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+
+    // 代码块里能写 --- 和 --，原markdown是能写
+    if (inCode(lines.slice(0, i).join(''))) {
+      curText += `${line}\n`
+      if (curLayout === 'column') {
+        curColumnText += `${line}\n`
+      }
+    } else if (line === layoutSeparator) {
+      if (curLayout === 'normal') {
+        // endLastNormalLayout
+        html += `${marked(curText)}`
+        // startColumnLayout
+        curLayout = 'column'
+        curText = ''
+        curColumnText = ''
+      } else {
+        // endLastColumn
+        curColumnHtml += `<div class="column-child">${marked(curColumnText)}</div>`
+        // endColumnLayout
+        html += `<div class="column-container">${curColumnHtml}</div>`
+        curText = ''
+        curColumnText = ''
+        curLayout = 'normal'
+        curColumnHtml = ''
+      }
+    } else if (line === columnSeparator) {
+      // endLastColumn
+      curColumnHtml += `<div class="column-child">${marked(curColumnText)}</div>`
+      curColumnText = ''
+      // startNewColumn
+    } else {
+      if (curLayout === 'column') {
+        curColumnText += `${line}\n`
+      }
+      curText += `${line}\n`
+    }
+
+    if (i === lines.length - 1 && curText) {
+      // endEverything
+      // endColumnLayou
+      // endNormalLayout
+      html += marked(curText)
     }
   }
+  return html
+}
+
+function slide2html2(text) {
+  const blocks = text
+    .split(layoutSeparator)
+    .map((v) => v.replace(/^\n+|\n+$/g, ''))
+    .filter((v) => v.trim() !== '')
 
   return blocks
     .map((block) => {
-      if (block.startsWith('{layout:column}')) {
-        let html = ''
-        const items = block
-          .replace(/\{layout:\s*column\}/g, '')
-          .replace(/^\n+|\n+$/g, '')
-          .split('{break}')
-        html += items
-          .map((v) => {
-            return `<div class="column-child">${marked(v)}</div>`
-          })
-          .join('')
-        html = `<div class="column-container column-container-${items.length}">${html}</div>`
+      if (block.includes(columnSeparator)) {
+        return {
+          type: 'columnLayout',
+          columns: block
+            .split(columnSeparator)
+            .map((v) => v.replace(/^\n+|\n+$/g, ''))
+            .filter((v) => v.trim() !== '')
+            .map((column) => column.trim()),
+        }
+      }
+      return {
+        type: 'singleBlock',
+        content: block,
+      }
+    })
+    .map((v) => {
+      if (v.type === 'columnLayout') {
+        let html = '<div class="column-container">'
+        v.columns.forEach((column) => {
+          html += `<div class="column-child">${marked(column)}</div>`
+        })
+        html += '</div>'
         return html
       }
-      return marked(block)
+      return marked(v.content)
     })
     .join('')
 }
