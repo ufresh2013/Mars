@@ -12,7 +12,7 @@ export default function App({ value, setValue }) {
   return (
     <>
       <div className="editor-header">
-        <span class="panel">
+        <span className="panel">
           💻
           {/* <SvgIcon name="code" size="20" /> */}
           &nbsp;&nbsp;Code

@@ -16,7 +16,7 @@ import SvgIcon from '@/components/SvgIcon'
 
 export default function Home() {
   const [value, setValue] = useState(flowDefaultValue)
-  const [active, setActive] = useState('flow')
+  const [active, setActive] = useState('ppt')
   const renderTypes = [
     {
       type: 'flow',

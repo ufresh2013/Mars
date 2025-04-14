@@ -1,81 +1,81 @@
+import { marked } from 'marked'
+export const SLIDE_WIDTH = 1280
+export const SLIDE_HEIGHT = 800
+export const SLIDE_PADDING = 20
+
 export function mark2ppt(text) {
   if (!text) return []
   return text
     .split('----')
-    .map((slide, index) => {
+    .filter((v) => v.trim() !== '')
+    .map((slide) => {
       slide = slide.trim()
-      const res = {
-        id: index.toString(),
-        data: {
-          source: slide,
-        },
-      }
-
-      if (index > 0) {
-        res.data.left = (index - 1).toString()
-      }
-
-      if (index < text.split('----').length - 1) {
-        res.data.right = (index + 1).toString()
-      }
-      return res
+      return slide2html(slide)
     })
-    .reduce((slides, { id, data }) => ({ ...slides, [id]: data }), {})
 }
 
-export const SLIDE_WIDTH = 1920
-export const SLIDE_HEIGHT = 1080
-export const SLIDE_PADDING = 100
+export function slide2html(slide) {
+  if (!slide) return []
+  return splitTextByLayout(slide)
+}
 
-export const slidesToElements = (slides) => {
-  const start = Object.keys(slides)[0]
-  const stack = [{ id: start, position: { x: 0, y: 0 } }]
-  const visited = new Set()
-  const nodes = []
-  const edges = []
+function splitTextByLayout(text) {
+  const blocks = []
+  const layoutRegex = /{layout:column}/g
+  let match
+  let lastIndex = 0
 
-  while (stack.length) {
-    const { id, position } = stack.pop()
-    const slide = slides[id]
-    const node = {
-      id,
-      type: 'slide',
-      position,
-      data: slide,
-      draggable: false,
-    }
-
-    if (slide.left && !visited.has(slide.left)) {
-      const nextPosition = {
-        x: position.x - (SLIDE_WIDTH + SLIDE_PADDING),
-        y: position.y,
+  while ((match = layoutRegex.exec(text)) !== null) {
+    // 处理 {layout:column} 之前的内容
+    if (match.index > lastIndex) {
+      const preLayoutText = text.slice(lastIndex, match.index).trim()
+      if (preLayoutText) {
+        blocks.push(preLayoutText)
       }
-
-      stack.push({ id: slide.left, position: nextPosition })
-      edges.push({
-        id: `${id}->${slide.left}`,
-        source: id,
-        target: slide.left,
-      })
     }
 
-    if (slide.right && !visited.has(slide.right)) {
-      const nextPosition = {
-        x: position.x + (SLIDE_WIDTH + SLIDE_PADDING),
-        y: position.y,
-      }
-
-      stack.push({ id: slide.right, position: nextPosition })
-      edges.push({
-        id: `${id}->${slide.down}`,
-        source: id,
-        target: slide.down,
-      })
+    // 查找下一个 {layout:column}
+    const nextMatch = layoutRegex.exec(text)
+    if (nextMatch) {
+      const layoutBlock = text.slice(
+        match.index,
+        nextMatch.index + '{layout:column}'.length
+      )
+      blocks.push(layoutBlock)
+      lastIndex = nextMatch.index + '{layout:column}'.length
+    } else {
+      // 如果没有下一个 {layout:column}，将当前到末尾的内容加入
+      const layoutBlock = text.slice(match.index)
+      blocks.push(layoutBlock)
+      break
     }
-
-    nodes.push(node)
-    visited.add(id)
   }
 
-  return { start, nodes, edges }
+  // 处理最后一个 {layout:column} 之后的内容
+  if (lastIndex < text.length) {
+    const remainingText = text.slice(lastIndex).trim()
+    if (remainingText) {
+      blocks.push(remainingText)
+    }
+  }
+
+  return blocks
+    .map((block) => {
+      if (block.startsWith('{layout:column}')) {
+        let html = ''
+        const items = block
+          .replace(/\{layout:\s*column\}/g, '')
+          .replace(/^\n+|\n+$/g, '')
+          .split('{break}')
+        html += items
+          .map((v) => {
+            return `<div class="column-child">${marked(v)}</div>`
+          })
+          .join('')
+        html = `<div class="column-container column-container-${items.length}">${html}</div>`
+        return html
+      }
+      return marked(block)
+    })
+    .join('')
 }

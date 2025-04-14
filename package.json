@@ -19,9 +19,9 @@
     "@xyflow/react": "^12.5.4",
     "github-markdown-css": "^5.8.1",
     "html-to-image": "^1.11.11",
+    "marked": "^15.0.8",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-remark": "^2.1.0"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
