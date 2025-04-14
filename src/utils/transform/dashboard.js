@@ -11,14 +11,17 @@ export function mark2dashboard(text) {
   }
 
   for (let i = 0; i < blocks.length; i += 2) {
-    const type = blocks[i].trim()
-    const content = blocks[i + 1].trim()
+    const type = (blocks[i] ?? '').trim()
+    const content = (blocks[i + 1] ?? '').trim()
 
     if (type === 'card') {
       result.cards = [...result.cards, ...parseCardContent(content)]
       continue
     } else {
-      console.log(parseChartContent(content))
+      const chartData = parseChartContent(content)
+      if (!chartData) {
+        continue
+      }
       result.charts.push({
         chartType: type,
         ...parseChartContent(content),
@@ -36,12 +39,12 @@ export function mark2dashboard(text) {
  * @returns {Object} - 解析后的卡片数据对象
  */
 function parseCardContent(content) {
-  const lines = content.split('\n').filter((line) => line.trim())
+  const lines = content.split('\n').filter((line) => line.trim() !== '')
   const cards = []
 
   for (let i = 0; i < lines.length; i += 2) {
     const title = lines[i].replace('# ', '').trim()
-    const value = parseFloat(lines[i + 1].trim())
+    const value = (lines[i + 1] ?? '').trim()
     cards.push({
       title,
       value,
@@ -65,7 +68,7 @@ function parseChartContent(content) {
   }
 
   // 第一行是标题
-  chartData.title = lines[0].replace('# ', '').trim()
+  chartData.title = (lines[0] ?? '').replace('# ', '').trim()
   let currentName = ''
   let currentType = ''
 
@@ -88,6 +91,13 @@ function parseChartContent(content) {
       }
     }
   })
+
+  if (
+    chartData.xValuesList.length === 0 ||
+    chartData.yValuesList.length === 0
+  ) {
+    return null
+  }
 
   return chartData
 }

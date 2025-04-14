@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import './index.scss'
 
 // import Editor from '@/pages/Editor/index.jsx'
@@ -15,32 +15,49 @@ import {
 import SvgIcon from '@/components/SvgIcon'
 
 export default function Home() {
-  const [value, setValue] = useState(flowDefaultValue)
-  const [active, setActive] = useState('ppt')
+  const [flowValue, setFlowValue] = useState(flowDefaultValue)
+  const [pptValue, setPptValue] = useState(pptDefaultValue)
+  const [dashboardValue, setDashboardValue] = useState(reportDefaultValue)
+  const [htmlValue, setHtmlValue] = useState(markdownDefaultValue)
+  const [active, setActive] = useState('flow')
   const renderTypes = [
     {
       type: 'flow',
       name: 'FLOW',
-      defaultValue: flowDefaultValue,
-      render: () => <Flow value={value} />,
+      render: () => <Flow value={flowValue} setValue={setFlowValue} />,
     },
     {
       type: 'ppt',
       name: 'PPT',
-      defaultValue: pptDefaultValue,
-      render: () => <PPT value={value} />,
+      render: () => {
+        return (
+          <Suspense fallback={<div>Loading...</div>}>
+            <PPT value={pptValue} setValue={setPptValue} />
+          </Suspense>
+        )
+      },
     },
     {
       type: 'dashboard',
       name: 'Dashboard',
-      defaultValue: reportDefaultValue,
-      render: () => <Dashboard value={value} />,
+      render: () => {
+        return (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Dashboard value={dashboardValue} setValue={setDashboardValue} />
+          </Suspense>
+        )
+      },
     },
     {
-      type: 'HTML',
+      type: 'html',
       name: 'HTML',
-      defaultValue: markdownDefaultValue,
-      render: () => <Html value={value} />,
+      render: () => {
+        return (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Html value={htmlValue} setValue={setHtmlValue} />
+          </Suspense>
+        )
+      },
     },
   ]
   const curRenderer = renderTypes.find((item) => item.type === active).render
@@ -53,10 +70,7 @@ export default function Home() {
           return (
             <span
               className={`tag ${active === item.type && 'tag-active'}`}
-              onClick={() => {
-                setActive(item.type)
-                setValue(item.defaultValue)
-              }}
+              onClick={() => setActive(item.type)}
               key={item.type}
             >
               {item.name}

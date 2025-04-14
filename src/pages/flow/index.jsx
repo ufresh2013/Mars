@@ -24,9 +24,8 @@ const { nodes: initialNodes, edges: initialEdges } = mark2flow(
 const nodeTypes = {
   editableNode: EditableNode,
 }
-const FlowPage = () => {
+const FlowPage = ({ value, setValue }) => {
   // 编辑器文本
-  const [value, setValue] = useState(flowDefaultValue)
   const [direction, setDirection] = useState('TR')
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
@@ -80,10 +79,10 @@ const FlowPage = () => {
   )
 }
 
-export default function () {
+export default function ({ value, setValue }) {
   return (
     <ReactFlowProvider>
-      <FlowPage />
+      <FlowPage value={value} setValue={setValue} />
     </ReactFlowProvider>
   )
 }

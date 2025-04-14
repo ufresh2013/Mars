@@ -2,7 +2,7 @@
   max-width: 800px;
   width: 80%;
   margin: 0 auto;
-  padding-top: 40px;
+  padding: 40px 20px;
 }
 .dashboard-title {
   margin: 20px 0;
@@ -10,6 +10,7 @@
 .dashboard-cards {
   display: flex;
   padding: 0 0 20px;
+  margin-right: -20px;
 
   .card {
     flex: 1 1 25%;
@@ -31,6 +32,8 @@
 .dashboard-charts {
   display: flex;
   flex-wrap: wrap;
+  margin-right: -20px;
+
   .chart {
     flex: 1 1 33%;
     min-width: 250px;

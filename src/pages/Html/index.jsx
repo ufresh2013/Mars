@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { markdownDefaultValue } from '@/utils/defaultValue'
+import React from 'react'
 import { Viewer } from '@bytemd/react'
 import Editor from '@/components/Editor/index.jsx'
 import gfm from '@bytemd/plugin-gfm'
@@ -10,9 +9,7 @@ const plugins = [
   gfm(),
   // Add more plugins here
 ]
-export default function View() {
-  const [value, setValue] = useState(markdownDefaultValue)
-
+export default function View({ value, setValue }) {
   return (
     <div className="container">
       <div className="container-editor">

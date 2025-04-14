@@ -1,10 +1,12 @@
 .ppt {
   width: 100%;
   max-width: 1100px;
+  min-width: 400px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   padding: 30px 10px;
+  justify-content: center;
   &::after {
     content: '';
     flex: 1 0 40%;
@@ -14,12 +16,13 @@
 
 .slide {
   flex: 1 0 40%;
+  min-width: 400px;
+  max-width: 600px;
   margin: 10px;
   height: 320px;
   border-radius: 10px;
   box-sizing: border-box;
   box-shadow: 0rem 1rem 4rem 0.25rem rgba(0, 0, 0, 0.06);
-  background: #fff;
   padding: 40px;
   font-size: 14px;
   line-height: 1.8;
@@ -29,6 +32,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   h1,
   h2,
   h3,
@@ -72,6 +76,7 @@
     row-gap: 20px;
     column-gap: 20px;
     align-items: flex-start;
+    margin-top: 16px;
   }
   .column-child {
     flex: 1 1 50%;
